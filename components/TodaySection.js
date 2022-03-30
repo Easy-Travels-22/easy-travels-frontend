@@ -6,6 +6,7 @@ export default function TodaySection() {
     <View style={styles.todayContainer}>
       <Text style={styles.title}>Today</Text>
       <ActivityCard />
+      <ActivityCard />
     </View>
   );
 }
