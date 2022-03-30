@@ -7,11 +7,10 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AntDesign } from "@expo/vector-icons";
-import { Navigation } from "@material-ui/icons";
 
 export default function LoginScreen({ navigation }) {
   const handleLogin = () => {
-    navigation.navigate("TabNavigator");
+    navigation.navigate("DrawerNavigator");
   };
   return (
     <SafeAreaView style={styles.container}>

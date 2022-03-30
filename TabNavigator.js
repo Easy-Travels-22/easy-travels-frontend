@@ -9,7 +9,10 @@ import CalendarScreen from "./screens/CalendarScreen";
 export default function TabNavigator() {
   const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName="Home"
+    >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Accomodations" component={AccommodationScreen} />
       <Tab.Screen name="Transport" component={TransportScreen} />
