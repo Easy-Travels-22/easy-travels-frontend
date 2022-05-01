@@ -10,7 +10,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 export default function LoginScreen({ navigation }) {
   const handleLogin = () => {
-    navigation.navigate("DrawerNavigator");
+    navigation.navigate("HomeScreen");
   };
   return (
     <SafeAreaView style={styles.container}>

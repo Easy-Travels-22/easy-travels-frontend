@@ -1,9 +1,9 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View, Text, Button } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useState } from "react";
 import TodaySection from "../components/TodaySection";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [searchSelected, setSearchSelected] = useState(false);
 
   const handleSearchFocus = () => {
@@ -35,6 +35,15 @@ export default function HomeScreen() {
         )}
       </View>
       <TodaySection />
+      <View>
+        <Text>temporary trip homepage</Text>
+        <Button
+          title={"navigate"}
+          onPress={() => {
+            navigation.push("ItineraryOverviewScreen");
+          }}
+        />
+      </View>
     </View>
   );
 }
