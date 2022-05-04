@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useRef, useState } from "react";
 import {
+  Alert,
   StyleSheet,
   Text,
   View,
@@ -28,25 +29,45 @@ export default function SingleSchedulerScreen({ navigation }) {
     <TouchableOpacity
       style={styles.activity__item}
       onPress={() => {
-        navigation.push("CreateActivityScreen", {
-          updateItem: updateItem,
-          deleteItem: deleteItem,
-          item: item,
-          isNewItem: false,
-        });
+        editActivityPage(item);
       }}
+      onLongPress={() =>
+        Alert.alert("Alert", "Long press options:", [
+          { text: "ok" },
+          {
+            text: "view",
+            onPress: () => {
+              editActivityPage(item);
+            },
+          },
+          {
+            text: "delete",
+            onPress: () => {
+              deleteItem(item.id);
+            },
+          },
+        ])
+      }
     >
       <Text>{item.name}</Text>
     </TouchableOpacity>
   );
 
-  const createActivity = () => {
+  const createActivityPage = () => {
     navigation.push("CreateActivityScreen", {
       addItem: addItem,
       isNewItem: true,
     });
   };
 
+  const editActivityPage = (item) => {
+    navigation.push("CreateActivityScreen", {
+      updateItem: updateItem,
+      deleteItem: deleteItem,
+      item: item,
+      isNewItem: false,
+    });
+  };
   const addItem = (newName, newDescription) => {
     setItemArr([
       ...itemArr,
@@ -87,7 +108,7 @@ export default function SingleSchedulerScreen({ navigation }) {
           keyExtractor={(item) => item.key}
         />
       </View>
-      <FloatingButtons fn={createActivity} />
+      <FloatingButtons fn={createActivityPage} />
     </View>
   );
 }
