@@ -1,7 +1,16 @@
-import { StyleSheet, TextInput, View, Text, Button } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+} from "react-native";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { useState } from "react";
 import TodaySection from "../components/TodaySection";
+import global from "../assets/styles/global";
+import CreateTripScreen from "./CreateTripScreen";
 
 export default function HomeScreen({ navigation }) {
   const [searchSelected, setSearchSelected] = useState(false);
@@ -11,39 +20,19 @@ export default function HomeScreen({ navigation }) {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.topBar}>
-        <View
-          style={
-            searchSelected
-              ? styles.searchBarContainerSelected
-              : styles.searchBarContainer
-          }
-        >
-          <TextInput
-            style={styles.searchBarInput}
-            autoCapitalize="none"
-            placeholder="Search"
-            onFocus={handleSearchFocus}
-            onBlur={handleSearchFocus}
-          />
-          <AntDesign name="search1" size={20} color="black" />
-        </View>
-        {!searchSelected && (
-          <View style={styles.profileIconContainer}>
-            <AntDesign name="user" size={30} color="black" />
-          </View>
-        )}
-      </View>
-      <TodaySection />
-      <View>
-        <Text>temporary trip homepage</Text>
-        <Button
-          title={"navigate"}
-          onPress={() => {
-            navigation.push("ItineraryOverviewScreen");
-          }}
-        />
-      </View>
+      <Text style={global.h3}>My Trips</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.push("CreateTripScreen")}
+      >
+        <AntDesign name="plus" size={40} color="white" />
+      </TouchableOpacity>
+      <Button
+        title={"navigate"}
+        onPress={() => {
+          navigation.push("ItineraryOverviewScreen");
+        }}
+      />
     </View>
   );
 }
@@ -52,49 +41,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "flex-start",
     paddingVertical: 20,
-    paddingHorizontal: 18,
+    paddingHorizontal: 35,
   },
-  topBar: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  searchBarContainer: {
-    backgroundColor: "#daf7dc",
-    width: "80%",
-    height: 50,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "black",
-    flexDirection: "row",
+  button: {
+    position: "absolute",
     alignItems: "center",
-  },
-  searchBarContainerSelected: {
-    backgroundColor: "#daf7dc",
-    width: "100%",
-    height: 50,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "black",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  searchBarInput: {
-    width: "80%",
-    height: 50,
-    marginLeft: "2.5%",
-    marginRight: 20,
-  },
-  profileIconContainer: {
-    width: 50,
-    height: 50,
-    borderWidth: 1,
-    borderColor: "black",
-    borderRadius: 10,
     justifyContent: "center",
-    alignItems: "center",
+    width: 65,
+    height: 65,
+    borderRadius: 100,
+    backgroundColor: "lightgrey",
+    bottom: 30,
+    right: 30,
   },
 });

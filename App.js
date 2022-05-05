@@ -2,6 +2,8 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
+import CreateTripScreen from "./screens/CreateTripScreen";
+import CreateTripScreen2 from "./screens/CreateTripScreen2";
 import CreateActivityScreen from "./screens/SchedulerScreens/CreateActivityScreen";
 import SingleSchedulerScreen from "./screens/SchedulerScreens/SingleSchedulerScreen";
 import ItineraryOverviewScreen from "./screens/SchedulerScreens/ItineraryOverviewScreen";
@@ -33,6 +35,8 @@ export default function App() {
           component={HomeScreen}
           options={{ headerBackVisible: false }}
         />
+        <Stack.Screen name="CreateTripScreen" component={CreateTripScreen} />
+        <Stack.Screen name="CreateTripScreen2" component={CreateTripScreen2} />
         <Stack.Screen
           name="ItineraryOverviewScreen"
           component={ItineraryOverviewScreen}

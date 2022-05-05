@@ -7,15 +7,14 @@ import {
   Picker,
   Dimensions,
   Keyboard,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
 } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { useState } from "react";
 import { continents, countries } from "countries-list";
 import { FontAwesome } from "@expo/vector-icons";
 
 import DatePicker from "react-native-neat-date-picker";
-import global from "../assets/styles/global";
 
 export default function CreateTripScreen() {
   const { width, height } = Dimensions.get("window");
@@ -45,23 +44,23 @@ export default function CreateTripScreen() {
       onPress={Keyboard.dismiss()}
     >
       <View style={styles.container}>
-        <Text style={[global.h3, { marginBottom: 27 }]}>Plan a Trip</Text>
+        <Text style={styles.fieldLabel}>Trip Name:</Text>
         <View style={styles.fieldContainer}>
-          <TextInput
-            style={styles.fieldInput}
-            placeholder={"Trip name"}
-            placeholderTextColor="black"
-          />
+          <TextInput style={styles.fieldInput} />
         </View>
-        <TouchableOpacity
+        <Text style={styles.fieldLabel}>
+          {`Travel Period: ${
+            startDate && endDate
+              ? calculateDaysApart(startDate, endDate) + " days"
+              : ""
+          }`}
+        </Text>
+        <View
           style={{
             ...styles.fieldContainer,
             height: 50,
             paddingLeft: 12,
-            marginBottom: 0,
           }}
-          activeOpacity={1}
-          onPress={handleSelectDate}
         >
           <Text style={{ width: "37%", fontFamily: "RobotoLight" }}>{`From:\n${
             startDate ? startDate.toDateString() : ""
@@ -69,56 +68,41 @@ export default function CreateTripScreen() {
           <Text style={{ width: "37%", fontFamily: "RobotoLight" }}>{`To:\n${
             endDate ? endDate.toDateString() : ""
           }`}</Text>
-          <View
+          <TouchableOpacity
+            onPress={handleSelectDate}
             style={{
-              backgroundColor: "grey",
+              backgroundColor: "#8b9d71",
               height: 50,
               width: 60,
-              borderRadius: 8,
-              borderTopLeftRadius: 0,
-              borderBottomLeftRadius: 0,
+              borderRadius: 15,
               justifyContent: "center",
               alignItems: "center",
             }}
           >
             <FontAwesome name="calendar" size={24} color="#ededed" />
-          </View>
-        </TouchableOpacity>
-        <Text style={[styles.fieldLabel, { marginBottom: 20 }]}>
-          {`Travel Duration: ${
-            startDate && endDate
-              ? calculateDaysApart(startDate, endDate) + " days"
-              : ""
-          }`}
-        </Text>
+          </TouchableOpacity>
+        </View>
 
+        <Text style={styles.fieldLabel}>Description:</Text>
         <TextInput
           style={{
             width: "100%",
             flex: 1,
-            borderRadius: 8,
+            borderRadius: 15,
             paddingHorizontal: 12,
             fontFamily: "RobotoLight",
             backgroundColor: "#ededed",
             marginBottom: 15,
-            textAlignVertical: "top",
-            backgroundColor: "white",
-            borderWidth: 1,
-            borderColor: "lightgrey",
-            paddingVertical: 12,
-            fontSize: 15,
           }}
           multiline={true}
           numberOfLines={20}
-          placeholder={"Description"}
-          placeholderTextColor={"black"}
         />
 
         <TouchableOpacity style={{ ...styles.submitButton, width: width - 56 }}>
           <Text
             style={{ color: "white", fontFamily: "RobotoLight", fontSize: 20 }}
           >
-            Start Planning
+            SUBMIT
           </Text>
         </TouchableOpacity>
         <DatePicker
@@ -144,31 +128,27 @@ const styles = StyleSheet.create({
   fieldLabel: {
     marginLeft: 12,
     fontFamily: "JosefinSans",
-    fontSize: 15,
+    fontSize: 20,
   },
   fieldContainer: {
     width: "100%",
     height: 40,
-    borderRadius: 8,
+    borderRadius: 15,
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
     marginBottom: 20,
-    // backgroundColor: "#ededed",
-    borderColor: "lightgrey",
-    borderWidth: 1,
-    color: "black",
+    backgroundColor: "#ededed",
   },
   fieldInput: {
     height: "100%",
     width: "75%",
-    fontSize: 15,
+    fontSize: 18,
     fontFamily: "RobotoLight",
     paddingLeft: 12,
-    alignItems: "center",
   },
   submitButton: {
-    backgroundColor: "grey",
+    backgroundColor: "#8b9d71",
     height: 50,
     width: "100%",
     borderRadius: 15,
