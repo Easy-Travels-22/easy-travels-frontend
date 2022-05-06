@@ -13,6 +13,7 @@ import TodaySection from "../components/TodaySection";
 import global from "../assets/styles/global";
 import CreateTripScreen from "./CreateTripScreen";
 import DatePicker from "react-native-neat-date-picker";
+import SingleSchedulerScreen from "./SchedulerScreens/SingleSchedulerScreen";
 
 export default function HomeScreen({ navigation }) {
   const [searchSelected, setSearchSelected] = useState(false);
@@ -34,7 +35,12 @@ export default function HomeScreen({ navigation }) {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.tripCard}>
+    <TouchableOpacity
+      style={styles.tripCard}
+      onPress={() => {
+        navigation.push("SingleSchedulerScreen");
+      }}
+    >
       <Text style={{ fontWeight: "bold" }}>{item.name.toUpperCase()}</Text>
       <Text>{`${customDateString(item.startDate)} - ${customDateString(
         item.endDate

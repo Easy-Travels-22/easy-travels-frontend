@@ -39,21 +39,26 @@ export default function CreateTripScreen({ route, navigation }) {
   const calculateDaysApart = (day1, day2) => {
     const oneDay = 1000 * 60 * 60 * 24;
     const diffInTime = day2.getTime() - day1.getTime();
-    const diffInDays = Math.round(diffInTime / oneDay);
+    const diffInDays = Math.round(diffInTime / oneDay) + 1;
 
     return diffInDays;
   };
 
   const handleSubmit = () => {
-    const obj = {
-      key: uuid.v4(),
-      name: name,
-      startDate: startDate,
-      endDate: endDate,
-      description: description,
-    };
-    console.log(obj);
-    addTrip(obj);
+    if (!startDate) {
+      alert("Start and end date required");
+    } else if (!name) {
+      alert("Trip name required");
+    } else {
+      addTrip({
+        key: uuid.v4(),
+        name: name,
+        startDate: startDate,
+        endDate: endDate,
+        description: description,
+      });
+      navigation.pop();
+    }
   };
   return (
     // <TouchableWithoutFeedback
@@ -106,7 +111,7 @@ export default function CreateTripScreen({ route, navigation }) {
       <Text style={[styles.fieldLabel, { marginBottom: 20 }]}>
         {`Travel Duration: ${
           startDate && endDate
-            ? calculateDaysApart(startDate, endDate) + " days"
+            ? calculateDaysApart(startDate, endDate) + " day(s)"
             : ""
         }`}
       </Text>
