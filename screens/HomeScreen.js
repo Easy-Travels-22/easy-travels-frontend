@@ -13,12 +13,11 @@ import TodaySection from "../components/TodaySection";
 import global from "../assets/styles/global";
 import CreateTripScreen from "./CreateTripScreen";
 import DatePicker from "react-native-neat-date-picker";
-import SingleSchedulerScreen from "./SchedulerScreens/SingleSchedulerScreen";
+import SingleSchedulerScreen from "./SingleSchedulerScreen";
 
 export default function HomeScreen({ navigation }) {
   const [searchSelected, setSearchSelected] = useState(false);
   const [trips, setTrips] = useState([]);
-
   const addTrip = (trip) => {
     setTrips([...trips, trip]);
   };

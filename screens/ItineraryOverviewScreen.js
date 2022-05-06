@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import uuid from "react-native-uuid";
 import { SafeAreaView } from "react-native-safe-area-context";
-import FloatingButtons from "../../components/FloatingButtons";
+import FloatingButtons from "../components/FloatingButtons";
 
 export default function ItineraryOverviewScreen({ navigation }) {
   const [itemArr, setItemArr] = useState([

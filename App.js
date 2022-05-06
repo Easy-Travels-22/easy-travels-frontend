@@ -4,9 +4,9 @@ import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import CreateTripScreen from "./screens/CreateTripScreen";
 import CreateTripScreen2 from "./screens/CreateTripScreen2";
-import CreateActivityScreen from "./screens/SchedulerScreens/CreateActivityScreen";
-import SingleSchedulerScreen from "./screens/SchedulerScreens/SingleSchedulerScreen";
-import ItineraryOverviewScreen from "./screens/SchedulerScreens/ItineraryOverviewScreen";
+import CreateActivityScreen from "./screens/CreateActivityScreen";
+import SingleSchedulerScreen from "./screens/SingleSchedulerScreen";
+import ItineraryOverviewScreen from "./screens/ItineraryOverviewScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 

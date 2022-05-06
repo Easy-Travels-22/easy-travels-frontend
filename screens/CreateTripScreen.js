@@ -50,12 +50,15 @@ export default function CreateTripScreen({ route, navigation }) {
     } else if (!name) {
       alert("Trip name required");
     } else {
+      const duration = calculateDaysApart(startDate, endDate);
+      let schedule = Array.from({ length: duration }, () => []);
       addTrip({
         key: uuid.v4(),
         name: name,
+        description: description,
         startDate: startDate,
         endDate: endDate,
-        description: description,
+        schedule: schedule,
       });
       navigation.pop();
     }
