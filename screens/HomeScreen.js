@@ -43,8 +43,8 @@ export default function HomeScreen({ navigation }) {
           {
             key: uuid.v4(),
             type: "activity",
-            name: "Orchard AirBnb",
-            description: "Illegal AirBnb in Singapore",
+            name: "Theme park",
+            description: "The best theme park in europe",
           },
         ],
         [],
@@ -53,8 +53,20 @@ export default function HomeScreen({ navigation }) {
       startDate: new Date("2022-05-30"),
     },
   ]);
+
   const addTrip = (trip) => {
     setTrips([...trips, trip]);
+  };
+
+  const updateTrip = (updatedTrip) => {
+    setTrips(
+      trips.map((trip, index) => {
+        if (trip.key == updatedTrip.key) {
+          trips[index] = updatedTrip;
+        }
+      })
+    );
+    console.log(trips);
   };
   const customDateString = (date) => {
     const [month, day, year] = [
@@ -72,7 +84,10 @@ export default function HomeScreen({ navigation }) {
     <TouchableOpacity
       style={styles.tripCard}
       onPress={() => {
-        navigation.push("ScheduleOverviewScreen", { trip: item });
+        navigation.push("ScheduleOverviewScreen", {
+          trip: item,
+          updateTrip: updateTrip,
+        });
       }}
     >
       <Text style={{ fontWeight: "bold" }}>{item.name.toUpperCase()}</Text>

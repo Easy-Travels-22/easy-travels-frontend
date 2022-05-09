@@ -5,52 +5,20 @@ import {
   StyleSheet,
   Text,
   View,
-  PanResponder,
-  Animated,
-  Easing,
   FlatList,
   TouchableOpacity,
-  TouchableHighlight,
 } from "react-native";
 import uuid from "react-native-uuid";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FloatingButtons from "../components/FloatingButtons";
 
 export default function SingleScheduleScreen({ route, navigation }) {
-  const { schedule, index } = route.params;
-  console.log(schedule[index]);
+  const { schedule, index, updateSchedule } = route.params;
   const [item, setItemArr] = useState([]);
-  const renderItem = ({ item }) => (
-    <TouchableOpacity
-      style={styles.activity__item}
-      onPress={() => {
-        editActivityPage(item);
-      }}
-      onLongPress={() =>
-        Alert.alert("Alert", "Long press options:", [
-          { text: "ok" },
-          {
-            text: "view",
-            onPress: () => {
-              editActivityPage(item);
-            },
-          },
-          {
-            text: "delete",
-            onPress: () => {
-              deleteItem(item.id);
-            },
-          },
-        ])
-      }
-    >
-      <Text>{item.name}</Text>
-    </TouchableOpacity>
-  );
 
   const createActivityPage = () => {
     navigation.push("CreateActivityScreen", {
-      addItem: addItem,
+      addEvent: addEvent,
       isNewItem: true,
     });
   };
@@ -90,6 +58,41 @@ export default function SingleScheduleScreen({ route, navigation }) {
   const deleteItem = (id) => {
     setItemArr(itemArr.filter((item) => item.id != id));
   };
+
+  const addEvent = (newEvent) => {
+    const updatedSchedule = [...schedule];
+    updatedSchedule[index].push(newEvent);
+
+    updateSchedule(updatedSchedule);
+  };
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity
+      style={styles.activity__item}
+      onPress={() => {
+        editActivityPage(item);
+      }}
+      onLongPress={() =>
+        Alert.alert("Alert", "Long press options:", [
+          { text: "ok" },
+          {
+            text: "view",
+            onPress: () => {
+              editActivityPage(item);
+            },
+          },
+          {
+            text: "delete",
+            onPress: () => {
+              deleteItem(item.id);
+            },
+          },
+        ])
+      }
+    >
+      <Text>{item.name}</Text>
+    </TouchableOpacity>
+  );
 
   return (
     <View style={styles.container}>

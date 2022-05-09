@@ -1,32 +1,35 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
-  PanResponder,
-  Animated,
-  Easing,
-  FlatList,
   TouchableOpacity,
-  TouchableHighlight,
   Button,
   ScrollView,
 } from "react-native";
 import uuid from "react-native-uuid";
 import { SafeAreaView } from "react-native-safe-area-context";
-import FloatingButtons from "../components/FloatingButtons";
 
 export default function ScheduleOverviewScreen({ route, navigation }) {
-  const { trip } = route.params;
-  const [itemArr, setItemArr] = useState([
-    {
-      key: uuid.v4(),
-      type: "lodging",
-      name: "Melbourne AirBnb",
-      description: "AirBnb that costs $595.67 mad dollars",
-    },
-  ]);
+  const { trip, updateTrip } = route.params;
+  const [itemArr, setItemArr] = useState([]);
+
+  const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  const months = [
+    "JANUARY",
+    "FEBRUARY",
+    "MARCH",
+    "APRIL",
+    "MAY",
+    "JUNE",
+    "JULY",
+    "AUGUST",
+    "SEPTEMBER",
+    "OCTOBER",
+    "NOVEMBER",
+    "DECEMBER",
+  ];
 
   const sortDateRange = (range) => {
     let dates = [
@@ -66,36 +69,10 @@ export default function ScheduleOverviewScreen({ route, navigation }) {
     return day + "/" + month + "/" + year;
   };
 
-  const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  const months = [
-    "JANUARY",
-    "FEBRUARY",
-    "MARCH",
-    "APRIL",
-    "MAY",
-    "JUNE",
-    "JULY",
-    "AUGUST",
-    "SEPTEMBER",
-    "OCTOBER",
-    "NOVEMBER",
-    "DECEMBER",
-  ];
-
-  const createActivity = () => {
-    navigation.push("CreateActivityScreen", { addItem: addItem });
-  };
-
-  const addItem = (newName, newDescription) => {
-    setItemArr([
-      ...itemArr,
-      {
-        key: uuid.v4(),
-        type: "activity",
-        name: newName,
-        description: newDescription,
-      },
-    ]);
+  const updateSchedule = (updatedSchedule) => {
+    let updatedTrip = { ...trip };
+    updatedTrip.schedule = updatedSchedule;
+    updateTrip(updatedTrip);
   };
   return (
     <View style={styles.container}>
@@ -120,6 +97,7 @@ export default function ScheduleOverviewScreen({ route, navigation }) {
                       navigation.push("SingleScheduleScreen", {
                         schedule: trip.schedule,
                         index: day.index,
+                        updateSchedule: updateSchedule,
                       });
                     }}
                   >

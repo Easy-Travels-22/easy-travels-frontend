@@ -9,11 +9,12 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import uuid from "react-native-uuid";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 
 export default function CreateActivityScreen({ route, navigation }) {
-  const { addItem, updateItem, deleteItem, item, isNewItem } = route.params;
+  const { addEvent, updateItem, deleteItem, item, isNewItem } = route.params;
   const [isEditable, setIsEditable] = useState(isNewItem);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -29,7 +30,12 @@ export default function CreateActivityScreen({ route, navigation }) {
       alert("name cannot be blank");
     } else {
       if (isNewItem) {
-        addItem(name, description);
+        addEvent({
+          key: uuid.v4(),
+          type: "activity",
+          name: name,
+          description: description,
+        });
       } else {
         updateItem(item.id, name, description);
       }
