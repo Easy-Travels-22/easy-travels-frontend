@@ -16,7 +16,7 @@ import uuid from "react-native-uuid";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FloatingButtons from "../components/FloatingButtons";
 
-export default function SingleSchedulerScreen({ navigation }) {
+export default function SingleScheduleScreen({ navigation }) {
   const [itemArr, setItemArr] = useState([
     {
       key: uuid.v4(),

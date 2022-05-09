@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function SchedulerScreen() {
+export default function ScheduleScreen() {
   let itemArr = [
     { name: "destination 1", key: "0" },
     { name: "destination 2", key: "1" },

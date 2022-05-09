@@ -40,7 +40,7 @@ export default function HomeScreen2({ navigation }) {
         <Button
           title={"navigate"}
           onPress={() => {
-            navigation.push("ItineraryOverviewScreen");
+            navigation.push("ScheduleOverviewScreen");
           }}
         />
       </View>

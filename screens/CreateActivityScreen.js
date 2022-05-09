@@ -33,7 +33,7 @@ export default function CreateActivityScreen({ route, navigation }) {
       } else {
         updateItem(item.id, name, description);
       }
-      navigation.navigate("SingleSchedulerScreen");
+      navigation.navigate("SingleScheduleScreen");
     }
   };
   const handleEdit = () => {
@@ -41,10 +41,10 @@ export default function CreateActivityScreen({ route, navigation }) {
   };
   const handleDelete = () => {
     deleteItem(item.id);
-    navigation.navigate("SingleSchedulerScreen");
+    navigation.navigate("SingleScheduleScreen");
   };
   const handleCancel = () => {
-    navigation.navigate("SingleSchedulerScreen");
+    navigation.navigate("SingleScheduleScreen");
   };
   return (
     // <TouchableWithoutFeedback

@@ -5,8 +5,8 @@ import HomeScreen from "./screens/HomeScreen";
 import CreateTripScreen from "./screens/CreateTripScreen";
 import CreateTripScreen2 from "./screens/CreateTripScreen2";
 import CreateActivityScreen from "./screens/CreateActivityScreen";
-import SingleSchedulerScreen from "./screens/SingleSchedulerScreen";
-import ItineraryOverviewScreen from "./screens/ItineraryOverviewScreen";
+import SingleScheduleScreen from "./screens/SingleScheduleScreen";
+import ScheduleOverviewScreen from "./screens/ScheduleOverviewScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 
@@ -38,12 +38,12 @@ export default function App() {
         <Stack.Screen name="CreateTripScreen" component={CreateTripScreen} />
         <Stack.Screen name="CreateTripScreen2" component={CreateTripScreen2} />
         <Stack.Screen
-          name="ItineraryOverviewScreen"
-          component={ItineraryOverviewScreen}
+          name="ScheduleOverviewScreen"
+          component={ScheduleOverviewScreen}
         />
         <Stack.Screen
-          name="SingleSchedulerScreen"
-          component={SingleSchedulerScreen}
+          name="SingleScheduleScreen"
+          component={SingleScheduleScreen}
         />
         <Stack.Screen
           name="CreateActivityScreen"

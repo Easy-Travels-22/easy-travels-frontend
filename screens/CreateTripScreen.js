@@ -22,7 +22,7 @@ export default function CreateTripScreen({ route, navigation }) {
   const { addTrip } = route.params;
   const { width, height } = Dimensions.get("window");
   const [modalOpen, setModalOpen] = useState(false);
-  const [dateRange, setDateRange] = useState();
+  // const [dateRange, setDateRange] = useState();
   const [name, setName] = useState();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -44,6 +44,24 @@ export default function CreateTripScreen({ route, navigation }) {
     return diffInDays;
   };
 
+  const getDatesInRange = (startDate, endDate) => {
+    const date = new Date(startDate.getTime());
+
+    const dates = [];
+
+    while (date <= endDate) {
+      dates.push(new Date(date));
+      date.setDate(date.getDate() + 1);
+    }
+
+    return dates;
+  };
+
+  // const d1 = new Date('2022-01-18');
+  // const d2 = new Date('2022-01-24');
+
+  // console.log(getDatesInRange(d1, d2));
+
   const handleSubmit = () => {
     if (!startDate) {
       alert("Start and end date required");
@@ -51,16 +69,20 @@ export default function CreateTripScreen({ route, navigation }) {
       alert("Trip name required");
     } else {
       const duration = calculateDaysApart(startDate, endDate);
+      const dateRange = getDatesInRange(startDate, endDate);
       let schedule = Array.from({ length: duration }, () => []);
-      addTrip({
+      const trip = {
         key: uuid.v4(),
         name: name,
         description: description,
         startDate: startDate,
         endDate: endDate,
+        dateRange: dateRange,
         schedule: schedule,
-      });
-      navigation.pop();
+      };
+      console.log(trip);
+      addTrip(trip);
+      navigation.push("ScheduleOverviewScreen", { trip: trip });
     }
   };
   return (
