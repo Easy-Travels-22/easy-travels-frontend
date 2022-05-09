@@ -35,11 +35,7 @@ export default function ScheduleOverviewScreen({ route, navigation }) {
     let currIndex = 0;
     let datesIndex = 0;
 
-    // console.log(currIndex + "/ " + range.length);
-    // const isSameMonth = true;
     while (currIndex < range.length) {
-      console.log("catch this:");
-      console.log(dates);
       const currDate = range[currIndex];
       const year = currDate.getFullYear();
       const month = currDate.getMonth();
@@ -68,13 +64,26 @@ export default function ScheduleOverviewScreen({ route, navigation }) {
   };
 
   const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  const months = [
+    "JANUARY",
+    "FEBRUARY",
+    "MARCH",
+    "APRIL",
+    "MAY",
+    "JUNE",
+    "JULY",
+    "AUGUST",
+    "SEPTEMBER",
+    "OCTOBER",
+    "NOVEMBER",
+    "DECEMBER",
+  ];
+  // const renderDates = ({ item }) => <Text>{item.length}</Text>;
 
-  const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.date__wrapper}>
-      <Text style={{ fontSize: 18 }}>{item.getDate()}</Text>
-      <Text style={{ fontSize: 9 }}>{days[item.getDay()]}</Text>
-    </TouchableOpacity>
-  );
+  // <TouchableOpacity style={styles.date__wrapper}>
+  //   <Text style={{ fontSize: 18 }}>{item.getDate()}</Text>
+  //   <Text style={{ fontSize: 9 }}>{days[item.getDay()]}</Text>
+  // </TouchableOpacity>
 
   const createActivity = () => {
     navigation.push("CreateActivityScreen", { addItem: addItem });
@@ -100,9 +109,21 @@ export default function ScheduleOverviewScreen({ route, navigation }) {
         )}`}</Text>
       </View>
       <View style={styles.datesContainer}>
-        <View style={styles.listWrapper}>
-          <FlatList data={trip.dateRange} renderItem={renderItem} />
-        </View>
+        <ScrollView style={styles.listWrapper}>
+          {sortDateRange(trip.dateRange).map((date) => (
+            <View style={{ marginBottom: 20 }}>
+              <View style={styles.date__wrapper}>
+                <Text>{months[date.month] + " " + date.year}</Text>
+              </View>
+              {date.days.map((day) => (
+                <TouchableOpacity style={styles.date__wrapper}>
+                  <Text style={{ fontSize: 18 }}>{day.getDate()}</Text>
+                  <Text style={{ fontSize: 9 }}>{days[day.getDay()]}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          ))}
+        </ScrollView>
         {/* <Text>temporary overview homepage</Text>
       <Button
         title={"navigate"}
@@ -139,16 +160,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 28,
     backgroundColor: "white",
     width: "100%",
-    borderWidth: 1,
-    borderColor: "red",
   },
-  listWrapper: { borderWidth: 1, borderColor: "cyan", width: "100%", flex: 1 },
+  listWrapper: { width: "100%", flex: 1 },
   date__wrapper: {
     height: 40,
     borderBottomWidth: 1,
     borderBottomColor: "lightgrey",
     flexDirection: "row",
     alignItems: "flex-start",
+    justifyContent: "center",
     paddingLeft: 5,
     flexDirection: "column",
   },
