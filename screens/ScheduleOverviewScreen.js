@@ -40,13 +40,16 @@ export default function ScheduleOverviewScreen({ route, navigation }) {
       const year = currDate.getFullYear();
       const month = currDate.getMonth();
       if (dates[datesIndex].year == year && dates[datesIndex].month == month) {
-        dates[datesIndex].days = [...dates[datesIndex].days, currDate];
+        dates[datesIndex].days = [
+          ...dates[datesIndex].days,
+          { index: currIndex, date: currDate },
+        ];
       } else {
         datesIndex++;
         dates.push({
           year: year,
           month: month,
-          days: [currDate],
+          days: [{ index: currIndex, date: currDate }],
         });
       }
       currIndex++;
@@ -78,12 +81,6 @@ export default function ScheduleOverviewScreen({ route, navigation }) {
     "NOVEMBER",
     "DECEMBER",
   ];
-  // const renderDates = ({ item }) => <Text>{item.length}</Text>;
-
-  // <TouchableOpacity style={styles.date__wrapper}>
-  //   <Text style={{ fontSize: 18 }}>{item.getDate()}</Text>
-  //   <Text style={{ fontSize: 9 }}>{days[item.getDay()]}</Text>
-  // </TouchableOpacity>
 
   const createActivity = () => {
     navigation.push("CreateActivityScreen", { addItem: addItem });
@@ -116,10 +113,22 @@ export default function ScheduleOverviewScreen({ route, navigation }) {
                 <Text>{months[date.month] + " " + date.year}</Text>
               </View>
               {date.days.map((day) => (
-                <TouchableOpacity style={styles.date__wrapper}>
-                  <Text style={{ fontSize: 18 }}>{day.getDate()}</Text>
-                  <Text style={{ fontSize: 9 }}>{days[day.getDay()]}</Text>
-                </TouchableOpacity>
+                <View style={styles.date__wrapper}>
+                  <TouchableOpacity
+                    style={{ width: "100%" }}
+                    onPress={() => {
+                      navigation.push("SingleScheduleScreen", {
+                        schedule: trip.schedule,
+                        index: day.index,
+                      });
+                    }}
+                  >
+                    <Text style={{ fontSize: 18 }}>{day.date.getDate()}</Text>
+                    <Text style={{ fontSize: 9 }}>
+                      {days[day.date.getDay()]}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               ))}
             </View>
           ))}

@@ -16,15 +16,10 @@ import uuid from "react-native-uuid";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FloatingButtons from "../components/FloatingButtons";
 
-export default function SingleScheduleScreen({ navigation }) {
-  const [itemArr, setItemArr] = useState([
-    {
-      key: uuid.v4(),
-      type: "lodging",
-      name: "Melbourne AirBnb",
-      description: "AirBnb that costs $595.67 mad dollars",
-    },
-  ]);
+export default function SingleScheduleScreen({ route, navigation }) {
+  const { schedule, index } = route.params;
+  console.log(schedule[index]);
+  const [item, setItemArr] = useState([]);
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.activity__item}
@@ -103,7 +98,7 @@ export default function SingleScheduleScreen({ navigation }) {
       </View> */}
       <View style={styles.activity__listWrapper}>
         <FlatList
-          data={itemArr}
+          data={schedule[index]}
           renderItem={renderItem}
           keyExtractor={(item) => item.key}
         />

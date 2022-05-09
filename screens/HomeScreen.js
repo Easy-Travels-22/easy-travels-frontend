@@ -14,6 +14,7 @@ import global from "../assets/styles/global";
 import CreateTripScreen from "./CreateTripScreen";
 import DatePicker from "react-native-neat-date-picker";
 import SingleScheduleScreen from "./SingleScheduleScreen";
+import uuid from "react-native-uuid";
 
 export default function HomeScreen({ navigation }) {
   const [searchSelected, setSearchSelected] = useState(false);
@@ -27,9 +28,28 @@ export default function HomeScreen({ navigation }) {
       ],
       description: "its gonna be lit",
       endDate: new Date("2022-06-02"),
-      key: "4995d583-f4f1-476d-9464-3f4aa0f7a532",
+      key: uuid.v4(),
       name: "europe",
-      schedule: [[], [], [], []],
+      schedule: [
+        [
+          {
+            key: uuid.v4(),
+            type: "lodging",
+            name: "Melbourne AirBnb",
+            description: "AirBnb that costs $595.67 mad dollars",
+          },
+        ],
+        [
+          {
+            key: uuid.v4(),
+            type: "activity",
+            name: "Orchard AirBnb",
+            description: "Illegal AirBnb in Singapore",
+          },
+        ],
+        [],
+        [],
+      ],
       startDate: new Date("2022-05-30"),
     },
   ]);
