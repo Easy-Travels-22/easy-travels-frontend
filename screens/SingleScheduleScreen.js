@@ -17,15 +17,8 @@ export default function SingleScheduleScreen({ route, navigation }) {
   const { schedule, index, updateSchedule } = route.params;
   const [item, setItemArr] = useState([]);
 
-  const createActivityPage = () => {
-    navigation.push("CreateActivityScreen", {
-      addEvent: addEvent,
-      isNewItem: true,
-    });
-  };
-
   const editActivityPage = (item) => {
-    navigation.push("CreateActivityScreen", {
+    navigation.push("CreateEventScreen", {
       updateItem: updateItem,
       deleteItem: deleteItem,
       item: item,
@@ -108,7 +101,14 @@ export default function SingleScheduleScreen({ route, navigation }) {
           keyExtractor={(item) => item.key}
         />
       </View>
-      <FloatingButtons fn={createActivityPage} />
+      <FloatingButtons
+        fn={() => {
+          navigation.push("CreateEventScreen", {
+            addEvent: addEvent,
+            isNewItem: true,
+          });
+        }}
+      />
     </View>
   );
 }

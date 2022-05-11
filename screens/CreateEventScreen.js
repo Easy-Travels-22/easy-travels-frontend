@@ -14,7 +14,7 @@ import uuid from "react-native-uuid";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 
-export default function CreateActivityScreen({ route, navigation }) {
+export default function CreateEventScreen({ route, navigation }) {
   const { addEvent, updateItem, deleteItem, item, isNewItem } = route.params;
   const [isEditable, setIsEditable] = useState(isNewItem);
   const [name, setName] = useState("");
