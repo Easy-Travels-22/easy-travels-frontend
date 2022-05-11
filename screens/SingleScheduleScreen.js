@@ -7,6 +7,7 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  Button,
 } from "react-native";
 import uuid from "react-native-uuid";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -62,7 +63,8 @@ export default function SingleScheduleScreen({ route, navigation }) {
   const addEvent = (newEvent) => {
     const updatedSchedule = [...schedule];
     updatedSchedule[index].push(newEvent);
-
+    console.log("CHEECK");
+    console.log(updatedSchedule);
     updateSchedule(updatedSchedule);
   };
 

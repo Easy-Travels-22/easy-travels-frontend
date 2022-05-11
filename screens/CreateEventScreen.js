@@ -7,6 +7,7 @@ import {
   Keyboard,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Button,
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import uuid from "react-native-uuid";
@@ -39,7 +40,7 @@ export default function CreateActivityScreen({ route, navigation }) {
       } else {
         updateItem(item.id, name, description);
       }
-      navigation.navigate("SingleScheduleScreen");
+      navigation.pop();
     }
   };
   const handleEdit = () => {
@@ -58,6 +59,7 @@ export default function CreateActivityScreen({ route, navigation }) {
     //   onPress={Keyboard.dismiss()}
     // >
     <SafeAreaView style={styles.container}>
+      <Button onPress={handleSubmit} title={"hell"}></Button>
       <View style={styles.header__wrapper}>
         {!isNewItem && (
           <TouchableOpacity style={styles.header__icon} onPress={handleDelete}>

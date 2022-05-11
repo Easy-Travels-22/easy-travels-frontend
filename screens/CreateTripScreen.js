@@ -57,11 +57,6 @@ export default function CreateTripScreen({ route, navigation }) {
     return dates;
   };
 
-  // const d1 = new Date('2022-01-18');
-  // const d2 = new Date('2022-01-24');
-
-  // console.log(getDatesInRange(d1, d2));
-
   const handleSubmit = () => {
     if (!startDate) {
       alert("Start and end date required");
@@ -80,7 +75,6 @@ export default function CreateTripScreen({ route, navigation }) {
         dateRange: dateRange,
         schedule: schedule,
       };
-      console.log(trip);
       addTrip(trip);
       navigation.push("ScheduleOverviewScreen", { trip: trip });
     }

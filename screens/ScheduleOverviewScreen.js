@@ -111,13 +111,6 @@ export default function ScheduleOverviewScreen({ route, navigation }) {
             </View>
           ))}
         </ScrollView>
-        {/* <Text>temporary overview homepage</Text>
-      <Button
-        title={"navigate"}
-        onPress={() => {
-          navigation.push("SingleScheduleScreen");
-        }}
-      /> */}
       </View>
     </View>
   );

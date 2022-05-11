@@ -3,8 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import CreateTripScreen from "./screens/CreateTripScreen";
-import CreateTripScreen2 from "./screens/CreateTripScreen2";
-import CreateActivityScreen from "./screens/CreateActivityScreen";
+import CreateEventScreen from "./screens/CreateEventScreen";
 import SingleScheduleScreen from "./screens/SingleScheduleScreen";
 import ScheduleOverviewScreen from "./screens/ScheduleOverviewScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -36,7 +35,6 @@ export default function App() {
           options={{ headerBackVisible: false }}
         />
         <Stack.Screen name="CreateTripScreen" component={CreateTripScreen} />
-        <Stack.Screen name="CreateTripScreen2" component={CreateTripScreen2} />
         <Stack.Screen
           name="ScheduleOverviewScreen"
           component={ScheduleOverviewScreen}
@@ -46,8 +44,8 @@ export default function App() {
           component={SingleScheduleScreen}
         />
         <Stack.Screen
-          name="CreateActivityScreen"
-          component={CreateActivityScreen}
+          name="CreateEventScreen"
+          component={CreateEventScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

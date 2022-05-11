@@ -28,7 +28,7 @@ export default function HomeScreen({ navigation }) {
       ],
       description: "its gonna be lit",
       endDate: new Date("2022-06-02"),
-      key: uuid.v4(),
+      key: 1, // uuid.v4(),
       name: "europe",
       schedule: [
         [
@@ -59,14 +59,14 @@ export default function HomeScreen({ navigation }) {
   };
 
   const updateTrip = (updatedTrip) => {
-    setTrips(
-      trips.map((trip, index) => {
-        if (trip.key == updatedTrip.key) {
-          trips[index] = updatedTrip;
-        }
-      })
-    );
-    console.log(trips);
+    const updatedTrips = trips.map((trip) => {
+      if (trip.key == updatedTrip.key) {
+        return updatedTrip;
+      } else {
+        return trip;
+      }
+    });
+    setTrips(updatedTrips);
   };
   const customDateString = (date) => {
     const [month, day, year] = [
@@ -110,12 +110,6 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.listWrapper}>
         <FlatList data={trips} renderItem={renderItem}></FlatList>
       </View>
-      {/* <Button
-        title={"navigate"}
-        onPress={() => {
-          navigation.push("ScheduleOverviewScreen");
-        }}
-      /> */}
     </View>
   );
 }
