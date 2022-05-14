@@ -114,10 +114,10 @@ export default function CreateTripScreen({ route, navigation }) {
         activeOpacity={1}
         onPress={handleSelectDate}
       >
-        <Text style={{ width: "37%", fontFamily: "RobotoLight" }}>{`From:\n${
+        <Text style={[global.bodyText_1, { width: "37%" }]}>{`From:\n${
           startDate ? startDate.toDateString() : ""
         }`}</Text>
-        <Text style={{ width: "37%", fontFamily: "RobotoLight" }}>{`To:\n${
+        <Text style={[global.bodyText_1, { width: "37%" }]}>{`To:\n${
           endDate ? endDate.toDateString() : ""
         }`}</Text>
         <View
@@ -135,7 +135,9 @@ export default function CreateTripScreen({ route, navigation }) {
           <FontAwesome name="calendar" size={24} color="#ededed" />
         </View>
       </TouchableOpacity>
-      <Text style={[styles.fieldLabel, { marginBottom: 20 }]}>
+      <Text
+        style={[styles.fieldLabel, global.color__light_1, { marginBottom: 20 }]}
+      >
         {`Travel Duration: ${
           startDate && endDate
             ? calculateDaysApart(startDate, endDate) + " day(s)"
@@ -144,19 +146,21 @@ export default function CreateTripScreen({ route, navigation }) {
       </Text>
 
       <TextInput
-        style={{
-          width: "100%",
-          flex: 1,
-          borderRadius: 8,
-          paddingHorizontal: 12,
-          fontFamily: "RobotoLight",
-          backgroundColor: "#ededed",
-          marginBottom: 15,
-          textAlignVertical: "top",
-          backgroundColor: "white",
-          paddingVertical: 12,
-          fontSize: 15,
-        }}
+        style={[
+          global.bodyText_1,
+          {
+            width: "100%",
+            flex: 1,
+            borderRadius: 8,
+            paddingHorizontal: 12,
+            backgroundColor: "#ededed",
+            marginBottom: 15,
+            textAlignVertical: "top",
+            backgroundColor: "white",
+            paddingVertical: 12,
+            fontSize: 15,
+          },
+        ]}
         multiline={true}
         numberOfLines={20}
         placeholder={"Description"}
@@ -167,14 +171,13 @@ export default function CreateTripScreen({ route, navigation }) {
       />
 
       <TouchableOpacity
-        style={{ ...styles.submitButton, width: width - 56 }}
+        style={[
+          global.bgcolor__secondaryLight,
+          { ...styles.submitButton, width: width - 56 },
+        ]}
         onPress={handleSubmit}
       >
-        <Text
-          style={{ color: "white", fontFamily: "RobotoLight", fontSize: 20 }}
-        >
-          Start Planning
-        </Text>
+        <Text style={global.color__dark_1}>Start Planning</Text>
       </TouchableOpacity>
       <DatePicker
         isVisible={modalOpen}
@@ -220,7 +223,7 @@ const styles = StyleSheet.create({
   submitButton: {
     height: 50,
     width: "100%",
-    borderRadius: 15,
+    borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
