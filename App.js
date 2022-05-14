@@ -1,9 +1,13 @@
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "./screens/LoginScreen";
+import HomeScreen from "./screens/HomeScreen";
+import CreateTripScreen from "./screens/CreateTripScreen";
+import CreateEventScreen from "./screens/CreateEventScreen";
+import SingleScheduleScreen from "./screens/SingleScheduleScreen";
+import ScheduleOverviewScreen from "./screens/ScheduleOverviewScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
-import DrawerNavigator from "./DrawerNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,9 +23,31 @@ export default function App() {
   }
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
+      <Stack.Navigator>
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ headerBackVisible: false }}
+        />
+        <Stack.Screen name="CreateTripScreen" component={CreateTripScreen} />
+        <Stack.Screen
+          name="ScheduleOverviewScreen"
+          component={ScheduleOverviewScreen}
+        />
+        <Stack.Screen
+          name="SingleScheduleScreen"
+          component={SingleScheduleScreen}
+        />
+        <Stack.Screen
+          name="CreateEventScreen"
+          component={CreateEventScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

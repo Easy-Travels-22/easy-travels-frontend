@@ -2,6 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
+import SchedulerScreen from "./screens/SchedulerTest";
+import SchedulerScreen2 from "./screens/SingleScheduleScreen";
 import AccommodationScreen from "./screens/AccommodationScreen";
 import TransportScreen from "./screens/TransportScreen";
 import CalendarScreen from "./screens/CalendarScreen";
