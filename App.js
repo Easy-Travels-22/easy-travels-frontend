@@ -16,6 +16,9 @@ export default function App() {
     RobotoLight: require("./assets/fonts/Roboto-Light.ttf"),
     Roboto: require("./assets/fonts/Roboto-Regular.ttf"),
     JosefinSans: require("./assets/fonts/JosefinSans-Light.ttf"),
+    OpenSansExtraBold: require("./assets/fonts/OpenSans-ExtraBold.ttf"),
+    ArchivoNarrow: require("./assets/fonts/ArchivoNarrow-Regular.ttf"),
+    PTSans: require("./assets/fonts/PTSans-Regular.ttf"),
   });
 
   if (!loaded) {

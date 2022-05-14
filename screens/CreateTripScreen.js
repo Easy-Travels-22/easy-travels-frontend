@@ -141,7 +141,7 @@ export default function CreateTripScreen({ route, navigation }) {
           flex: 1,
           borderRadius: 8,
           paddingHorizontal: 12,
-          fontFamily: "RobotoLight",
+          fontFamily: "OpenSansExtraBold",
           backgroundColor: "#ededed",
           marginBottom: 15,
           textAlignVertical: "top",

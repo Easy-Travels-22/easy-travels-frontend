@@ -82,7 +82,7 @@ export default function HomeScreen({ navigation }) {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
-      style={styles.tripCard}
+      style={[styles.tripCard, global.bgcolor__grad_1, global.dropshadow_1]}
       onPress={() => {
         navigation.push("ScheduleOverviewScreen", {
           trip: item,
@@ -98,7 +98,7 @@ export default function HomeScreen({ navigation }) {
   );
   return (
     <View style={styles.container}>
-      <Text style={global.h3}>My Trips</Text>
+      <Text style={global.bodyText_1}>My Trips</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() =>
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   tripCard: {
     width: "100%",
-    backgroundColor: "lightgrey",
+    // backgroundColor: "lightgrey",
     borderRadius: 8,
     borderBottomRightRadius: 32,
     borderTopLeftRadius: 32,
