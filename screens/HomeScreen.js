@@ -15,6 +15,7 @@ import CreateTripScreen from "./CreateTripScreen";
 import DatePicker from "react-native-neat-date-picker";
 import SingleScheduleScreen from "./SingleScheduleScreen";
 import uuid from "react-native-uuid";
+// import AddIcon from "../assets/images/icons/add.svg";
 
 export default function HomeScreen({ navigation }) {
   const [searchSelected, setSearchSelected] = useState(false);
@@ -98,14 +99,14 @@ export default function HomeScreen({ navigation }) {
   );
   return (
     <View style={styles.container}>
-      <Text style={global.bodyText_1}>My Trips</Text>
+      <Text style={[global.headerText_1, global.color__dark_1]}>My Trips</Text>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button, global.bgcolor__secondaryLight]}
         onPress={() =>
           navigation.push("CreateTripScreen", { addTrip: addTrip })
         }
       >
-        <AntDesign name="plus" size={40} color="white" />
+        <AntDesign name="plus" size={26} color="#0D1735" />
       </TouchableOpacity>
       <View style={styles.listWrapper}>
         <FlatList data={trips} renderItem={renderItem}></FlatList>
@@ -129,8 +130,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 65,
     height: 65,
-    borderRadius: 100,
-    backgroundColor: "lightgrey",
+    borderRadius: 65 / 2,
     bottom: 30,
     right: 30,
     zIndex: 2,

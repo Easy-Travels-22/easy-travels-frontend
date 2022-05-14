@@ -37,6 +37,9 @@ export default StyleSheet.create({
   color__dark_1: {
     color: "#0D1735",
   },
+  color__light_1: {
+    color: "#FCFCFC",
+  },
 
   // Filter
   dropshadow_1: {
