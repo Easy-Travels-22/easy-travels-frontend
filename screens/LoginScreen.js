@@ -5,13 +5,39 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useContext, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AntDesign } from "@expo/vector-icons";
+import { UserContext } from "../context/UserContext";
+import { useNavigation } from "@react-navigation/core";
+import axios from "axios";
 
-export default function LoginScreen({ navigation }) {
-  const handleLogin = () => {
-    navigation.navigate("HomeScreen");
+export default function LoginScreen({ setIsSignedIn }) {
+  const navigation = useNavigation();
+  const { setUser, setToken } = useContext(UserContext);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [failedLoginAttempt, setFailedLoginAttempt] = useState(false);
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post(
+        "https://easy-travels-api.herokuapp.com/api/v1/users/login",
+        {
+          name: username,
+          password: password,
+        }
+      );
+      if (res.data.token && res.data.user) {
+        setUser(res.data.user);
+        setToken(res.data.token);
+        setIsSignedIn(true);
+      }
+    } catch (error) {
+      setFailedLoginAttempt(true);
+      console.log("ERROR: ", error);
+    }
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>EasyTravels</Text>
@@ -21,6 +47,7 @@ export default function LoginScreen({ navigation }) {
             autoCapitalize="none"
             style={styles.textInput}
             placeholder="Username"
+            onChangeText={setUsername}
           />
           <AntDesign name="user" size={20} color="black" />
         </View>
@@ -30,9 +57,11 @@ export default function LoginScreen({ navigation }) {
             style={styles.textInput}
             placeholder="Password"
             secureTextEntry
+            onChangeText={setPassword}
           />
           <AntDesign name="lock" size={20} color="black" />
         </View>
+        <Text>{failedLoginAttempt && "Username or Password is incorrect"}</Text>
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.actionText}>LOGIN</Text>
         </TouchableOpacity>
