@@ -7,11 +7,10 @@ import {
   FlatList,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import global from "../assets/styles/global";
 import uuid from "react-native-uuid";
-import { useEffect } from "react";
 import axios from "axios";
 
 export default function HomeScreen({ navigation }) {
@@ -66,7 +65,7 @@ export default function HomeScreen({ navigation }) {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
-      style={styles.tripCard}
+      style={[styles.tripCard, global.bgcolor__grad_1, global.dropshadow_1]}
       onPress={() => {
         navigation.push("ScheduleOverviewScreen", {
           trip: item,
@@ -82,14 +81,14 @@ export default function HomeScreen({ navigation }) {
   );
   return (
     <View style={styles.container}>
-      <Text style={global.h3}>My Trips</Text>
+      <Text style={[global.headerText_1, global.color__dark_1]}>My Trips</Text>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button, global.bgcolor__secondaryLight]}
         onPress={() =>
           navigation.push("CreateTripScreen", { addTrip: addTrip })
         }
       >
-        <AntDesign name="plus" size={40} color="white" />
+        <AntDesign name="plus" size={26} color="#0D1735" />
       </TouchableOpacity>
       <View style={styles.listWrapper}>
         <FlatList data={trips} renderItem={renderItem}></FlatList>
@@ -113,15 +112,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 65,
     height: 65,
-    borderRadius: 100,
-    backgroundColor: "lightgrey",
+    borderRadius: 65 / 2,
     bottom: 30,
     right: 30,
     zIndex: 2,
   },
   tripCard: {
     width: "100%",
-    backgroundColor: "lightgrey",
+    // backgroundColor: "lightgrey",
     borderRadius: 8,
     borderBottomRightRadius: 32,
     borderTopLeftRadius: 32,
