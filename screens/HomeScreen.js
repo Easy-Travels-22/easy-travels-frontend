@@ -11,45 +11,31 @@ import { useState, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import global from "../assets/styles/global";
 import uuid from "react-native-uuid";
+import { useEffect } from "react";
+import axios from "axios";
 
 export default function HomeScreen({ navigation }) {
   const [searchSelected, setSearchSelected] = useState(false);
-  const { token } = useContext(UserContext);
-  const [trips, setTrips] = useState([
-    {
-      dateRange: [
-        new Date("2022-05-30"),
-        new Date("2022-05-31"),
-        new Date("2022-06-01"),
-        new Date("2022-06-02"),
-      ],
-      description: "its gonna be lit",
-      endDate: new Date("2022-06-02"),
-      key: 1, // uuid.v4(),
-      name: "europe",
-      schedule: [
-        [
-          {
-            key: uuid.v4(),
-            type: "lodging",
-            name: "Melbourne AirBnb",
-            description: "AirBnb that costs $595.67 mad dollars",
-          },
-        ],
-        [
-          {
-            key: uuid.v4(),
-            type: "activity",
-            name: "Theme park",
-            description: "The best theme park in europe",
-          },
-        ],
-        [],
-        [],
-      ],
-      startDate: new Date("2022-05-30"),
-    },
-  ]);
+  const { token, user } = useContext(UserContext);
+  const [trips, setTrips] = useState([]);
+
+  const fetchUserTrips = async () => {
+    axios
+      .get("https://easy-travels-api.herokuapp.com/api/v1/trips", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log("fetched: ", res.data.data);
+        setTrips(res.data.data);
+      })
+      .catch((err) => console.log("ERROR: ", err));
+  };
+
+  useEffect(() => {
+    fetchUserTrips();
+  }, []);
 
   const addTrip = (trip) => {
     setTrips([...trips, trip]);
@@ -66,6 +52,7 @@ export default function HomeScreen({ navigation }) {
     setTrips(updatedTrips);
   };
   const customDateString = (date) => {
+    date = new Date(date);
     const [month, day, year] = [
       date.getMonth(),
       date.getDate(),
