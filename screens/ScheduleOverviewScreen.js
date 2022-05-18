@@ -61,6 +61,7 @@ export default function ScheduleOverviewScreen({ route, navigation }) {
   };
 
   const customDateString = (date) => {
+    date = new Date(date);
     const [month, day, year] = [
       date.getMonth(),
       date.getDate(),
