@@ -14,7 +14,7 @@ import axios from "axios";
 
 export default function LoginScreen({ setIsSignedIn }) {
   const navigation = useNavigation();
-  const { user, setUser, token, setToken } = useContext(UserContext);
+  const { setUser, setToken } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [failedLoginAttempt, setFailedLoginAttempt] = useState(false);
@@ -27,7 +27,8 @@ export default function LoginScreen({ setIsSignedIn }) {
           password: password,
         }
       );
-      if (res.data.token) {
+      if (res.data.token && res.data.user) {
+        setUser(res.data.user);
         setToken(res.data.token);
         setIsSignedIn(true);
       }
