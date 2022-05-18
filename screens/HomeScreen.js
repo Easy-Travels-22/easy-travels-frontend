@@ -3,21 +3,18 @@ import {
   TextInput,
   View,
   Text,
-  Button,
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import { AntDesign, Entypo } from "@expo/vector-icons";
-import { useState, useEffect } from "react";
-import TodaySection from "../components/TodaySection";
+import { AntDesign } from "@expo/vector-icons";
+import { useState, useContext } from "react";
+import { UserContext } from "../context/UserContext";
 import global from "../assets/styles/global";
-import CreateTripScreen from "./CreateTripScreen";
-import DatePicker from "react-native-neat-date-picker";
-import SingleScheduleScreen from "./SingleScheduleScreen";
 import uuid from "react-native-uuid";
 
 export default function HomeScreen({ navigation }) {
   const [searchSelected, setSearchSelected] = useState(false);
+  const { token } = useContext(UserContext);
   const [trips, setTrips] = useState([
     {
       dateRange: [
